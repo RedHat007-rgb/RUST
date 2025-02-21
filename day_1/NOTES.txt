@@ -1,0 +1,12 @@
+DATATYPES:
+    
+1)All the variables in rust by default they are immutable.
+2)Keyword mut is used to change immutable to mutable.....
+3)There are three types of primitives datatypes in Rust:
+    a)Integers
+        1.Signed Integers-It may be negitive or positive.
+        2.Unsigned Integers-It needs to be positive.
+    b)Boolean.
+    c)Strings.
+
+
