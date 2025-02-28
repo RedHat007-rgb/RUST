@@ -1,0 +1,30 @@
+Memory Management
+-->Two types of Memory Management:
+a)Manual Memory Management
+b)Garbage collector
+
+Manual Memory Management:
+    C language is the best example for manual memory mamgemnt.
+    In C,developers needs to aloocate and deallocate the memory by themselves which leads to
+    dangling pointers and memory issue.
+    It is hard for the beginner to understand the memory management in C.So the learning curve is high.
+
+Garbage Collector:
+Example:Java,Java Script.
+    In these type of languages,Developers need not to worry about manual memory management because
+        language itself written in a such a way that it cleans the memory or data which is out of scope.
+    Garbage Collector runs periodically to delete the unused data from RAM.
+
+Here Comes the Rust Way of dealing with Memory Management:
+    Rust has the unique way of dealing with memory managemnt.
+    It has some unique concepts called ownership and Borrowing which makes rust memory safe.
+    RUst checks all the memory issues at compile time.
+
+
+Mutability:
+    In every language there are tow types of variables which can be changed  
+        and which are unchanged once after declaring.
+    In rust,by default all the variables are immutable but can we can still use 
+        the mut keyword to make them mutable.
+    This mutability concept ensures to run the program more fast because as we already saying the compilier 
+        that values can be changed or not so that multiple threads can acces the data sta the same time.
