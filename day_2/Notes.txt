@@ -1,30 +1,91 @@
-Memory Management
--->Two types of Memory Management:
-a)Manual Memory Management
-b)Garbage collector
-
-Manual Memory Management:
-    C language is the best example for manual memory mamgemnt.
-    In C,developers needs to aloocate and deallocate the memory by themselves which leads to
-    dangling pointers and memory issue.
-    It is hard for the beginner to understand the memory management in C.So the learning curve is high.
-
-Garbage Collector:
-Example:Java,Java Script.
-    In these type of languages,Developers need not to worry about manual memory management because
-        language itself written in a such a way that it cleans the memory or data which is out of scope.
-    Garbage Collector runs periodically to delete the unused data from RAM.
-
-Here Comes the Rust Way of dealing with Memory Management:
-    Rust has the unique way of dealing with memory managemnt.
-    It has some unique concepts called ownership and Borrowing which makes rust memory safe.
-    RUst checks all the memory issues at compile time.
+📌 Memory Management
+➡ Two Types of Memory Management:
+Manual Memory Management
+Garbage Collector
 
 
-Mutability:
-    In every language there are tow types of variables which can be changed  
-        and which are unchanged once after declaring.
-    In rust,by default all the variables are immutable but can we can still use 
-        the mut keyword to make them mutable.
-    This mutability concept ensures to run the program more fast because as we already saying the compilier 
-        that values can be changed or not so that multiple threads can acces the data sta the same time.
+1️⃣ Manual Memory Management:
+C language is the best example of manual memory management.
+In C, developers need to allocate and deallocate the memory by themselves, which leads to:
+Dangling pointers
+Memory issues
+It is hard for beginners to understand memory management in C, so the learning curve is high.
+2️⃣ Garbage Collector:
+Examples: Java, JavaScript.
+
+In these types of languages, developers do not need to worry about manual memory management because the language itself is designed to clean up memory that is no longer in use.
+Garbage Collector runs periodically to delete unused data from RAM.
+
+
+📌 Here Comes the Rust Way of Dealing with Memory Management:
+Rust has a unique way of dealing with memory management.
+It introduces unique concepts called Ownership and Borrowing, which make Rust memory safe.
+Rust checks all memory issues at compile time.
+
+
+📌 Mutability:
+In every language, there are two types of variables:
+
+Mutable (Can be changed)
+Immutable (Cannot be changed after declaration)
+In Rust, all variables are immutable by default, but we can still use the mut keyword to make them mutable.
+
+This mutability concept ensures that the program runs faster because we tell the compiler in advance whether values can be changed or not.
+
+This allows multiple threads to access the data at the same time, improving performance.
+
+--Stack (LIFO) and Heap:
+Stack and Heap are very important in terms of storing temporary data of any executing program.
+
+Stack stores the address of the data stored in Heap.
+
+Analogy:
+
+The Stack is like a home address (points to a location).
+The Heap is like the actual house (stores the data, which can change in size).
+Sometimes, the house may have more members, sometimes fewer—this represents dynamic memory allocation.
+Rust uses Stack and Heap for:
+
+Memory safety (done via Ownership and Borrowing)
+Speed
+Preventing race conditions
+
+If the string is updating at the run time then it is stored in the heap.Heap stores strings and vectors.
+Stack stores numbers,booleans and arrays[which are of fixed size].
+
+Stack incase of a string stores the length,capacity and pointers which is pointed to the address where the value of the 
+string is located in the heap.....
+
+Heap is slow compared to Stack..
+
+
+Ownership:
+
+Ownership rules are introduced for doing memory management in Rust
+There is no problem for numbers and booleans as they are stored in stack as their type and values are known at compile time.
+But for strings and vectors;they are stored in heap but the adrress of the pointer is stored in stack.
+
+NOw we will deep dive into ownershoip rules:
+every string must have  only single owner once the variable grts out of scope it gets cleared from the heap.
+
+
+Borrowing:
+
+Borrowing is an important concept which removes erroes like dangling pointers and  meamory leaks....
+If you have a value stored in a variable(owner).You can have have mutltive variables (borrowers) which uses the owner's adress as the owner is 
+immutable.
+its like group policy insurance youy have main policy holder and others are sub policy holders.
+As only main applicant can change the policy 
+details but not sub policy holder.
+
+But in case of mutable strings,it is completely different...
+If you have a value stored in a variable(i.e,,String) which is mutable.then you cant have multiple borrowers.It stops the
+developer to create more varoables and keeps showing an error.
+It can have only one owner and one borraower at a time.If you have two borrowers at a time, if tow of them wants edit or mutate
+the string at at time it leads to an error and if one wants to delete it and after deleting it other wants to access,it clearly an 
+endpoint because it will access other data at that address which leads to memeory leak...
+
+Structs:
+
+Structs is the custom data structure where we can store may key-pair values which are known as feilds(in rust )
+but in js they are known as attributes and struct can be compared to objects in js.
